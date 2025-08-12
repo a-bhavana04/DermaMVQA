@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href= "/assets/app.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="/assets/logo.png">
+    <title>DermaBCK</title>
+  </head>
+  
+  <body>
+    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 fixed-top">
+      <div class="logo-image">
+          <img src="/assets/logo.png" class="img-fluid">
+    </div>
+    <a href="/" class="navbar-brand">DermaBCK</a>
+     <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navLinks">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/signup" class="nav-link">Sign Up</a>
+        </li>
+            <li class="nav-item">
+                <a href="/login" class="nav-link">Login</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+  <section class="container-fluid px-0">
+    <div class="d-flex row align-items-center">
+      <div class="col-lg-6"><div id="headingGroup" class="text text-center d-flex flex-column align-items-center
+        d-lg-block mt-5">
+        <h1>Welcome to DermaBCK!<br></h1>
+           <h2>
+          <h2> Reliable help for your Dermatological <br>
+            <span
+               class="txt-rotate"
+               data-period="2000"
+               data-rotate='[ "Problems", "Queries", "Doubts" ]'></span>
+          </h2>
+          <img class="img-fluid" src="/assets/des.png" alt="">
+          <form action="/signup" method="POST">
+          <button id="loginsignup" class="btn btn-dark w-30 mt-3 me-3 mb-3" >Sign up/ Login</button>
+          </h2>
+        </form>
+    </div></div>
+      <div class="col-lg-6">
+        <img class="img-fluid" src="/assets/gn.png" alt=""></div>
+
+      </div>
+    </div>
+</section>
+    <script>var TxtRotate = function(el, toRotate, period) {
+      this.toRotate = toRotate;
+      this.el = el;
+      this.loopNum = 0;
+      this.period = parseInt(period, 10) || 2000;
+      this.txt = '';
+      this.tick();
+      this.isDeleting = false;
+    };
+    
+    TxtRotate.prototype.tick = function() {
+      var i = this.loopNum % this.toRotate.length;
+      var fullTxt = this.toRotate[i];
+    
+      if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+      } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+      }
+    
+      this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+    
+      var that = this;
+      var delta = 300 - Math.random() * 100;
+    
+      if (this.isDeleting) { delta /= 2; }
+    
+      if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+      } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 500;
+      }
+    
+      setTimeout(function() {
+        that.tick();
+      }, delta);
+    };
+    
+    window.onload = function() {
+      var elements = document.getElementsByClassName('txt-rotate');
+      for (var i=0; i<elements.length; i++) {
+        var toRotate = elements[i].getAttribute('data-rotate');
+        var period = elements[i].getAttribute('data-period');
+        if (toRotate) {
+          new TxtRotate(elements[i], JSON.parse(toRotate), period);
+        }
+      }
+      // INJECT CSS
+      var css = document.createElement("style");
+      css.type = "text/css";
+      css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+      document.body.appendChild(css);
+    };</script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <!-- Check main.js for sendmail function -->
+    <script type="text/javascript" src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  </body>
+</html>

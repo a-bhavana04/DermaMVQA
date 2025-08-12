@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href= "/assets/app.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="/assets/logo.png">
+    <title>DermaBCK</title>
+  </head>
+  
+  <body>
+    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 fixed-top">
+      <div class="logo-image">
+          <img src="/assets/logo.png" class="img-fluid">
+    </div>
+    <a href="/" class="navbar-brand">DermaBCK</a>
+     <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navLinks">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">Log out</a>
+            </li>
+        </ul>
+    </div>
+  </nav>    
+    <section class="container mt-5 pt-5 text-center">
+        <h1>Welcome, <%= email %>!</h1>
+        <h2>Your Sessions</h2>
+        
+        <ul class="list-group mt-3">
+            <% if (sessions.length > 0) { %>
+                <% sessions.forEach(session => { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><%= session.sessionId %></span>
+                        <a href="/session/<%= session.sessionId %>" class="btn btn-sm btn-primary">View</a>
+                    </li>
+                <% }) %>
+            <% } else { %>
+                <li class="list-group-item">No sessions found</li>
+            <% } %>
+        </ul>
+        
+        <a href="#" onclick="createNewSession()" class="btn btn-dark mt-4">New Session</a>
+
+        <script>
+        function createNewSession() {
+    fetch('/new-session', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.redirect) {
+                window.location.href = data.redirect;
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+</script>  </section>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

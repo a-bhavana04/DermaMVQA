@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href= "/assets/app.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" href="/assets/logo.png">
+        <title>DermaBCK</title>
+      </head>
+<body>
+    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 fixed-top">
+        <div class="logo-image">
+            <img src="/assets/logo.png" class="img-fluid">
+      </div>
+      <a href="/" class="navbar-brand">DermaBCK</a>
+       <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navLinks">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="/signup" class="nav-link">Sign Up</a>
+          </li>
+              <li class="nav-item">
+                  <a href="/login" class="nav-link">Login</a>
+              </li>
+          </ul>
+      </div>
+    </nav>
+    <section class="container mt-5 pt-5">
+        <h1 class="text-center"><%= sessionId %></h1>
+        <div class="card mt-3">
+            <div class="card-body">
+                <% if (queryResponses.length > 0) { %>
+                    <% queryResponses.forEach(qr => { %>
+                        <div class="mb-3">
+                            <p><strong>Query:</strong> <%= qr.query %></p>
+                            <p><strong>Response:</strong> <%- qr.response %></p>
+                        </div>
+                        <hr>
+                    <% }) %>
+                <% } else { %>
+                    <p class="text-muted text-center">No queries yet. Start by asking a question below.</p>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- Query Input Section -->
+        <div class="mt-4">
+            <form action="/session/<%= sessionId %>/add-query" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <textarea name="query" class="form-control" placeholder="Type your query..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="file" class="form-control-file" name="image" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-dark">Send</button>
+            </form>
+            
+        </div>
+    </section>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>
