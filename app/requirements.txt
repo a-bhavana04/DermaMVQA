@@ -1,0 +1,12 @@
+streamlit
+pillow
+langchain
+langchain-community
+langchain-core
+pandas
+networkx
+httpx==0.27.2
+openai==1.57.2
+langchain
+flask
+requests
