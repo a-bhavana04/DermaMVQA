@@ -1,5 +1,3 @@
-# README: Medical Question Answering for Multimodal And Generative TelemedICine - MediQA MAGIC for Dermatology
-
 ## Project Overview
 This project implements a multimodal dermatological knowledge system that integrates Natural Language Processing (NLP), Knowledge Graphs (KG), and Multimodal Machine Learning to generate accurate and explainable dermatological responses. The system utilizes a combination of Named Entity Recognition (NER), ontology-based knowledge extraction, multimodal knowledge graph construction, and Retrieval-Augmented Generation (RAG) to provide well-structured responses to user queries.
 
@@ -82,5 +80,6 @@ python -m spacy download en_core_web_sm
 5. **Retrieve External Knowledge:** Run `external rag.ipynb` for web-based augmentation.
 6. **Deploy Chat Application:** Launch `app.py` for an interactive user interface.
 7. **Evaluate Performance:** Execute `score evaluation.py` to assess response accuracy.
+
 
 
